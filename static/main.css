@@ -22,7 +22,7 @@ time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -30,12 +30,19 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
   
-@
+@font-face{
+  font-family: Rubik;
+  src:url(Rubik-Regular.ttf);
+}
 
 .site-header .navbar-nav .nav-link {
     color: white;
 }
-  
+
+body{
+  font-family:Rubik;
+}
+
 .site-header .navbar-nav .nav-link:hover {
     background-color: #694F5D;
 }
@@ -143,3 +150,6 @@ h6 {
   margin-left: 2%;
 }
 
+.tableimage {
+  width:75%;
+}
