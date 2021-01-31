@@ -51,7 +51,7 @@ load_dotenv()
 CLI_ID = os.getenv("CLIENT_ID")
 CLI_SEC = os.getenv("CLIENT_SECRET")
 SPOTIFY_CLIENT = spotify.Client(CLI_ID, CLI_SEC)
-REDIRECT_URI: str = 'http://localhost:5000/spotify/callback'
+REDIRECT_URI: str = 'https://main.d4rziswelfhym.amplifyapp.com/spotify/callback'
 OAUTH2_SCOPES: Tuple[str] = ('user-top-read',)
 OAUTH2: spotify.OAuth2 = spotify.OAuth2(SPOTIFY_CLIENT.id, REDIRECT_URI, scopes=OAUTH2_SCOPES)
 SPOTIFY_USERS: Dict[str, spotify.User] = {}
