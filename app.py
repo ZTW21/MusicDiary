@@ -62,13 +62,15 @@ load_dotenv()
 CLI_ID = os.getenv("CLIENT_ID")
 CLI_SEC = os.getenv("CLIENT_SECRET")
 SPOTIFY_CLIENT = spotify.Client(CLI_ID, CLI_SEC)
-REDIRECT_URI: str = 'http://localhost:5000/spotify/callback'
+REDIRECT_URI: str = 'https://musicdiary.tech:5000/spotify/callback'
 
 # OAuth2 Settup
 OAUTH2_SCOPES: Tuple[str] = ('user-top-read',)
 scope = 'user-top-read'
 OAUTH2: spotify.OAuth2 = spotify.OAuth2(SPOTIFY_CLIENT.id, REDIRECT_URI, scopes=OAUTH2_SCOPES)
 SPOTIFY_USERS: Dict[str, spotify.User] = {}
+
+
 
 # setting up routing for linking between different html files
 templates = fastapi.templating.Jinja2Templates(directory="templates")
