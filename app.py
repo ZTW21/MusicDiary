@@ -10,6 +10,13 @@ from base64 import b64encode
 import uvicorn
 from dotenv import load_dotenv
 import os
+import json
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
+import spotipy.util as util
+import time
+import logging
+import requests
 
 async def from_code(
         cls, client: "spotify.Client", code: str, *, redirect_uri: str,
@@ -46,18 +53,29 @@ async def from_code(
 
         return cls.from_token(client, token, refresh_token)
 
+
+# Create the FastAPI App
 app = FastAPI()
+
+# Get the nessecary variables from the secure .env file
 load_dotenv()
 CLI_ID = os.getenv("CLIENT_ID")
 CLI_SEC = os.getenv("CLIENT_SECRET")
 SPOTIFY_CLIENT = spotify.Client(CLI_ID, CLI_SEC)
-REDIRECT_URI: str = 'https://main.d4rziswelfhym.amplifyapp.com/spotify/callback'
+REDIRECT_URI: str = 'http://localhost:5000/spotify/callback'
+
+# OAuth2 Settup
 OAUTH2_SCOPES: Tuple[str] = ('user-top-read',)
+scope = 'user-top-read'
 OAUTH2: spotify.OAuth2 = spotify.OAuth2(SPOTIFY_CLIENT.id, REDIRECT_URI, scopes=OAUTH2_SCOPES)
 SPOTIFY_USERS: Dict[str, spotify.User] = {}
+
+# setting up routing for linking between different html files
 templates = fastapi.templating.Jinja2Templates(directory="templates")
 app.mount("/static",fastapi.staticfiles.StaticFiles(directory="static"),name="static")
 
+
+# After the user signs in with their Spotify account, they will be sent to the redirect URI
 @app.get('/spotify/callback')
 async def spotify_callback(code : str):
     key = ''.join(random.choice(string.ascii_uppercase) for _ in range(16))
@@ -72,6 +90,7 @@ async def spotify_callback(code : str):
     return response
 
 
+# Sets default page as index.html
 @app.get("/")
 async def index(request : Request, spotify_user_id : Optional[str] = Cookie(None)):
     print('spotify_user_id:', spotify_user_id)
@@ -79,6 +98,7 @@ async def index(request : Request, spotify_user_id : Optional[str] = Cookie(None
         return RedirectResponse(url=OAUTH2.url)
     return templates.TemplateResponse("index.html",{"request" : request})
 
+# Custom routes for the different webpages
 @app.get("/albums")
 def albums(request : Request):
     return templates.TemplateResponse('albums.html',{'request' : request})
@@ -86,3 +106,7 @@ def albums(request : Request):
 @app.get("/diary")
 def diary(request : Request):
     return templates.TemplateResponse('diary.html',{'request' : request})
+
+@app.get("/about")
+def about(request : Request):
+    return templates.TemplateResponse('about.html', {'request' : request})

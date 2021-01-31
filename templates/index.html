@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Music Box</title>
+    <title>Music Diary</title>
 
     <style>
         body {
@@ -23,31 +23,48 @@
 <body id="navprofile">
     <div class="header">
         <ul id="sitenav">
-            <li><img src="img/musicboxlogo.png" alt ="Logo" class="headerimg"></li>
-            <li>Music Box</li>
-            <li class="pages"><img src="img/addmusicbox.png" alt="Add Music" class="headerimg"></li>
-            <li class="pages"><a href="/albums">Albums</a></li>
+            <li><img src="/static/img/musicboxlogo.png" alt ="Logo" class="headerimg" style="height: 64px; width: 64px;"></li>
+            <li><a href="/" style="background-color: #3a2b33;">Music Diary</a></li>
+            <li class="pages"><img src="/static/img/addmusicbox.png" alt="Add Music" class="headerimg" style="height: 32px; width: 32px;"></li>
+            <li class="pages"><a href="/albums">Artists</a></li>
             <li class="pages"><a href="/diary">Diary</a></li>
-            <li class="pages"><a href="/">Profile</a></li>
+            <li class="pages" style="background-color: #3a2b33;"><a href="/">Profile</a></li>
+            <li class="about-page"><a href="/about">About</a></li>
         </ul>
     </div>
-    <div id="favalbums">
-        <h6>Top Albums</h6>
-        <ul id="toppicks">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
+    <div id="toptracks">
+        <h6>Top Tracks</h6>
+        <table id="tabletoptracks">
+            <tr class="flex-container">
+               <td class="flex-item"><img src="/static/img/White-Square.jpg" alt="Album Cover"></td>
+               <td class="flex-item"><img src="/static/img/White-Square.jpg" alt="Album Cover"></td>
+               <td class="flex-item"><img src="/static/img/White-Square.jpg" alt="Album Cover"></td>
+               <td class="flex-item"><img src="/static/img/White-Square.jpg" alt="Album Cover"></td>
+            </tr>
+            <tr class="flex-container">
+               <td class="flex-item">Track 1</td>
+               <td class="flex-item">Track 2</td>
+               <td class="flex-item">Track 3</td>
+               <td class="flex-item">Track 4</td>
+            </tr>
+        </table>
     </div>
-    <div id="recentalbums">
-        <h6>Top Albums</h6>
-        <ul id="toprecents">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
+    <div id="topartists">
+        <h6>Top Artists</h6>
+        <table id="tabletopartists">
+            <tr class="flex-container">
+               <td class="flex-item"><img src="/static/img/White-Square.jpg" alt="Album Cover"></td>
+               <td class="flex-item"><img src="/static/img/White-Square.jpg" alt="Album Cover"></td>
+               <td class="flex-item"><img src="/static/img/White-Square.jpg" alt="Album Cover"></td>
+               <td class="flex-item"><img src="/static/img/White-Square.jpg" alt="Album Cover"></td>
+            </tr>
+            <tr class="flex-container">
+                <td class="flex-item">Artist 1</td>
+                <td class="flex-item">Artist 2</td>
+                <td class="flex-item">Artist 3</td>
+                <td class="flex-item">Artist 4</td>
+             </tr>
+        </table>
     </div>
 </body>
 </html>

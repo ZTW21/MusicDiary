@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Music Box</title>
+    <title>Music Diary</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -31,200 +31,393 @@
 </head>
 
 <body id="navdiary">
+    <div class="header">
+        <ul id="sitenav">
+            <li><img src="/static/img/musicboxlogo.png" alt ="Logo" class="headerimg" style="height: 64px; width: 64px;"></li>
+            <li><a href="/">Music Diary</a></li>
+            <li class="pages"><img src="/static/img/addmusicbox.png" alt="Add Music" class="headerimg" style="height: 32px; width: 32px;"></li>
+            <li class="pages"><a href="/albums">Artists</a></li>
+            <li class="pages" style="background-color: #3a2b33;"><a href="/diary">Diary</a></li>
+            <li class="pages"><a href="/">Profile</a></li>
+            <li class="about-page"><a href="/about">About</a></li>
+        </ul>
+    </div>
 <!--Table Elements-->
 <h2>Diary</h2>
-<button type="button" onclick="alert('Saving as PDF')">PDF</button>
-<button type="button" onclick="alert('Printing')">Print</button>
+<script>
+var doc = new jsPDF();
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
+
+$('#cmd').click(function () {
+    doc.fromHTML($('#content').html(), 15, 15, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+    doc.save('sample-file.pdf');
+});
+</script>
+<div id="editor"></div>
+
+<button type="button" onclick="window.print();">Print</button>
 <p>
-
-<table style= "width:100%">
+<div id="content">
+    <table style= "width:100%">
     <!--Table Labels-->
-    <tr>
-        <th class="Number">Number</th>
-        <th>Thumbnail</th>
-        <th>Album</th>
-        <th>Year</th>
-        <th>Rating</th>
-    </tr
-    <!--Entry 1 -->
-    <tr>
-        <td class="Number"> 1 </td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <tr>
+            <th class="Number">Number</th>
+            <th>Thumbnail</th>
+            <th>Artists/Album/Songs</th>
+            <th>Year</th>
+            <th>Rating</th>
+        </tr
+        <!--Entry 1 -->
+        <tr>
+            <td class="Number"> 1 </td>
+            <td class="Thumbnail">
+                <input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating">
+                <label></label>
+                <select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                    <option value="--------">--------</option>
+                    <option value="1">1</option>
+                    <option value="1">2</option>
+                    <option value="1">3</option>
+                    <option value="1">4</option>
+                    <option value="1">5</option>
+            </td>
+        </tr>
 
-    <!--Entry 2 -->
-    <tr>
-        <td class="Number">2</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 2 -->
+        <tr>
+            <td class="Number">2</td>
+            <td class="Thumbnail">
+                <input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td>
+            </td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating">
+                <select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                    <option value="--------">--------</option>
+                    <option value="1">1</option>
+                    <option value="1">2</option>
+                    <option value="1">3</option>
+                    <option value="1">4</option>
+                    <option value="1">5</option>
+            </td>
+        </tr>
 
-    <!--Entry 3 -->
-    <tr>
-        <td class="Number">3</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 3 -->
+        <tr>
+            <td class="Number">3</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating">
+                <select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                    <option value="--------">--------</option>
+                    <option value="1">1</option>
+                    <option value="1">2</option>
+                    <option value="1">3</option>
+                    <option value="1">4</option>
+                    <option value="1">5</option>
+            </td>
+        </tr>
 
-    <!--Entry 4 -->
-    <tr>
-        <td class="Number">4</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 4 -->
+        <tr>
+            <td class="Number">4</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating">
+                <select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                    <option value="--------">--------</option>
+                    <option value="1">1</option>
+                    <option value="1">2</option>
+                    <option value="1">3</option>
+                    <option value="1">4</option>
+                    <option value="1">5</option>
+            </td>
+        </tr>
 
-    <!--Entry 5 -->
-    <tr>
-        <td class="Number">5</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 5 -->
+        <tr>
+            <td class="Number">5</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating">
+                <select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                    <option value="--------">--------</option>
+                    <option value="1">1</option>
+                    <option value="1">2</option>
+                    <option value="1">3</option>
+                    <option value="1">4</option>
+                    <option value="1">5</option>
+            </td>
+        </tr>
 
-    <!--Entry 6 -->
-    <tr>
-        <td class="Number">6</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 6 -->
+        <tr>
+            <td class="Number">6</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating">
+                <select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                    <option value="--------">--------</option>
+                    <option value="1">1</option>
+                    <option value="1">2</option>
+                    <option value="1">3</option>
+                    <option value="1">4</option>
+                    <option value="1">5</option>
+            </td>
+        </tr>
 
-    <!--Entry 7 -->
-    <tr>
-        <td class="Number">7</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 7 -->
+        <tr>
+            <td class="Number">7</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating">
+                <select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                    <option value="--------">--------</option>
+                    <option value="1">1</option>
+                    <option value="1">2</option>
+                    <option value="1">3</option>
+                    <option value="1">4</option>
+                    <option value="1">5</option>
+            </td>
+        </tr>
 
-    <!--Entry 8 -->
-    <tr>
-        <td class="Number">8</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 8 -->
+        <tr>
+            <td class="Number">8</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating">
+                <select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                    <option value="--------">--------</option>
+                    <option value="1">1</option>
+                    <option value="1">2</option>
+                    <option value="1">3</option>
+                    <option value="1">4</option>
+                    <option value="1">5</option>
+            </td>
+        </tr>
 
-    <!--Entry 9 -->
-    <tr>
-        <td class="Number">9</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 9 -->
+        <tr>
+            <td class="Number">9</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating">
+                <select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                    <option value="--------">--------</option>
+                    <option value="1">1</option>
+                    <option value="1">2</option>
+                    <option value="1">3</option>
+                    <option value="1">4</option>
+                    <option value="1">5</option>
+            </td>
+        </tr>
 
-    <!--Entry 10 -->
-    <tr>
-        <td class="Number">10</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
-    
-    <!--Entry 11 -->
-    <tr>
-        <td class="Number">11</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 10 -->
+        <tr>
+            <td class="Number">10</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating"><select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                <option value="--------">--------</option>
+                <option value="1">1</option>
+                <option value="1">2</option>
+                <option value="1">3</option>
+                <option value="1">4</option>
+                <option value="1">5</option></td>
+        </tr>
+        
+        <!--Entry 11 -->
+        <tr>
+            <td class="Number">11</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating">
+                <select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                    <option value="--------">--------</option>
+                    <option value="1">1</option>
+                    <option value="1">2</option>
+                    <option value="1">3</option>
+                    <option value="1">4</option>
+                    <option value="1">5</option>
+            </td>
+        </tr>
 
-    <!--Entry 12 -->
-    <tr>
-        <td class="Number">12</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 12 -->
+        <tr>
+            <td class="Number">12</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating"><select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                <option value="--------">--------</option>
+                <option value="1">1</option>
+                <option value="1">2</option>
+                <option value="1">3</option>
+                <option value="1">4</option>
+                <option value="1">5</option></td>
+        </tr>
 
-    <!--Entry 13 -->
-    <tr>
-        <td class="Number">13</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 13 -->
+        <tr>
+            <td class="Number">13</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating"><select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                <option value="--------">--------</option>
+                <option value="1">1</option>
+                <option value="1">2</option>
+                <option value="1">3</option>
+                <option value="1">4</option>
+                <option value="1">5</option></td>
+        </tr>
 
-    <!--Entry 14 -->
-    <tr>
-        <td class="Number">14</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 14 -->
+        <tr>
+            <td class="Number">14</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating"><select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                <option value="--------">--------</option>
+                <option value="1">1</option>
+                <option value="1">2</option>
+                <option value="1">3</option>
+                <option value="1">4</option>
+                <option value="1">5</option></td>
+        </tr>
 
-    <!--Entry 15 -->
-    <tr>
-        <td class="Number">15</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 15 -->
+        <tr>
+            <td class="Number">15</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating"><select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                <option value="--------">--------</option>
+                <option value="1">1</option>
+                <option value="1">2</option>
+                <option value="1">3</option>
+                <option value="1">4</option>
+                <option value="1">5</option></td>
+        </tr>
 
-    <!--Entry 16 -->
-    <tr>
-        <td class="Number">16</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 16 -->
+        <tr>
+            <td class="Number">16</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating"><select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                <option value="--------">--------</option>
+                <option value="1">1</option>
+                <option value="1">2</option>
+                <option value="1">3</option>
+                <option value="1">4</option>
+                <option value="1">5</option></td>
+        </tr>
 
-    <!--Entry 17 -->
-    <tr>
-        <td class="Number">17</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 17 -->
+        <tr>
+            <td class="Number">17</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating"><select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                <option value="--------">--------</option>
+                <option value="1">1</option>
+                <option value="1">2</option>
+                <option value="1">3</option>
+                <option value="1">4</option>
+                <option value="1">5</option></td>
+        </tr>
 
-    <!--Entry 18 -->
-    <tr>
-        <td class="Number">18</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 18 -->
+        <tr>
+            <td class="Number">18</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating"><select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                <option value="--------">--------</option>
+                <option value="1">1</option>
+                <option value="1">2</option>
+                <option value="1">3</option>
+                <option value="1">4</option>
+                <option value="1">5</option></td>
+        </tr>
 
-    <!--Entry 19 -->
-    <tr>
-        <td class="Number">19</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
+        <!--Entry 19 -->
+        <tr>
+            <td class="Number">19</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating"><select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                <option value="--------">--------</option>
+                <option value="1">1</option>
+                <option value="1">2</option>
+                <option value="1">3</option>
+                <option value="1">4</option>
+                <option value="1">5</option></td>
+        </tr>
 
-    <!--Entry 20 -->
-    <tr>
-        <td class="Number">20</td>
-        <td class="Thumbnail"></td>
-        <td class="Album"></td>
-        <td class="Year"></td>
-        <td class="Rating"></td>
-    </tr>
-    </table>  
+        <!--Entry 20 -->
+        <tr>
+            <td class="Number">20</td>
+            <td class="Thumbnail"><input type='file' name='photo'>
+                <input type='submit' class='btn btn-success' value='Submit'></td></td>
+            <td class="Artists"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Year"><input type="text" id="fname" name="fname" value=""><br></td>
+            <td class="Rating"><select type="Rating" name="Rating" id="Rating" onchange="if (this.value=='Other'){this.form['Other'].style.visibility='visible'} else{this.form['Other'].style.visibility='hidden'};">
+                <option value="--------">--------</option>
+                <option value="1">1</option>
+                <option value="1">2</option>
+                <option value="1">3</option>
+                <option value="1">4</option>
+                <option value="1">5</option></td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

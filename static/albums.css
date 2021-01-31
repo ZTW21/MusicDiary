@@ -1,0 +1,44 @@
+.flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row;
+    flex-flow: row;
+    justify-content: space-around;
+   
+    line-height:30px;
+}
+.flex-item {
+    background: #0094C6;
+    margin: 5px;
+    color: #EEF6FC;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    flex: 1 0 auto;
+    height:auto;
+}
+.flex-item:before {
+    content:'';
+    float:left;
+    padding-top:100%;
+}
+
+#sitenav ul{
+    list-style: none;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    list-style:none;
+    font-size:30px;
+    font-style:bold;
+    background-color: #694F5D;
+    color: #EEF6FC;
+    display:inline;
+  }
